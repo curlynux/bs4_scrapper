@@ -11,6 +11,7 @@ def get_url(url):
             src = img.get('src')
             if (not "WP_" in src):
                 print "no img in the dir number: %d" % n
+                
             else:
                 print "img number: %d, src: %s" % (n, src)
 
