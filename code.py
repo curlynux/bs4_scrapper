@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bfs
 
 def get_url(url):
-    for n in range(0, 1000):
+    for n in range(59, 1000):
         dir_url = url + format(n) + "/"
         r = requests.get(dir_url).content
         soup = bfs(r, "html.parser")
@@ -13,5 +13,9 @@ def get_url(url):
                 print "no img in the dir number: %d" % n
             else:
                 print "img number: %d, src: %s" % (n, src)
+                arr = []
+                arr.insert(n, src)
+                print arr
+
 
 get_url("http://www.justinmaller.com/wallpaper/")
