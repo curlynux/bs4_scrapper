@@ -16,6 +16,5 @@ def get_url(url):
                 arr = []
                 arr.insert(n, src)
                 print arr
-
-
+                
 get_url("http://www.justinmaller.com/wallpaper/")
