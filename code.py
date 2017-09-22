@@ -6,21 +6,12 @@ url = "http://www.justinmaller.com/wallpaper/"
 
 def get_url():
     arr = {}
-    n = 59
-    while n <= range(n, 1000):
-        dir_url = url + format(n) + "/"
-        r = requests.get(dir_url).content
-        soup = bfs(r, "html.parser")
-        imgs = soup.find("div", {"id" : "wallwindow"}).findChildren()
-        n += 1
-        for img in imgs:
-            src = img.get('src')
-            if (not "WP_" in src):
-                pass
-                #print "no img in the dir number: %d" % n
+    for n in range(59, 1000):
+        soup = bfs(requests.get(url + format(n) + "/").content, "html.parser").find("div", {"id" : "wallwindow"}).findChildren()
+        for img in soup:
+            if (not "WP_" in img.get('src')):pass
             else:
-                arr[n] = src
-                for value in arr:
-                    print value, arr[value]
+                arr[n] = img.get('src')
+                for value in arr: print value, arr[value]
 
 get_url()
