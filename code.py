@@ -1,20 +1,25 @@
 import requests
 from bs4 import BeautifulSoup as bfs
 
-def get_url(url):
-    for n in range(59, 1000):
+url = "http://www.justinmaller.com/wallpaper/"
+
+def get_url():
+    arr = {}
+    n = 59
+    while n <= range(n, 1000):
         dir_url = url + format(n) + "/"
         r = requests.get(dir_url).content
         soup = bfs(r, "html.parser")
         imgs = soup.find("div", {"id" : "wallwindow"}).findChildren()
+        n += 1
         for img in imgs:
             src = img.get('src')
             if (not "WP_" in src):
-                print "no img in the dir number: %d" % n
+                pass
+                #print "no img in the dir number: %d" % n
             else:
-                print "img number: %d, src: %s" % (n, src)
-                arr = []
-                arr.insert(n, src)
-                print arr
-                
-get_url("http://www.justinmaller.com/wallpaper/")
+                arr[n] = src
+                for value in arr:
+                    print value, arr[value]
+
+get_url()
